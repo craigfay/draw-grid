@@ -8,7 +8,6 @@
   // Negate the value of a particular coordinate
   function toggleSquare(y, x) {
     grid[y][x] = +!grid[y][x];
-    console.log(grid)
   }
 </script>
 
