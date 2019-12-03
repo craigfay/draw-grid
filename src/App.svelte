@@ -1,16 +1,24 @@
 <script>
   $: grid = [
     [0,0,0,0],
-    [0,0,1,0],
+    [0,0,0,0],
     [0,0,0,0],
     [0,0,0,0],
   ]
+  // Negate the value of a particular coordinate
+  function toggleSquare(y, x) {
+    grid[y][x] = +!grid[y][x];
+    console.log(grid)
+  }
 </script>
 
-{#each grid as row}
+{#each grid as row, y}
   <div class="row">
-    {#each row as square}
-      <div class="square { square ? "enabled" : ""}"></div>
+    {#each row as square, x}
+      <div
+        class="square { square ? "enabled" : ""}"
+        on:click={() => toggleSquare(y, x)}>
+      </div>
     {/each}
   </div>
 {/each}
@@ -21,9 +29,9 @@
     flex-direction: row;
   }
   .square {
-    width: 50px;
-    height: 50px;
-    margin: 5px;
+    width: 32px;
+    height: 32px;
+    margin: 4px;
     background-color: gainsboro;
   }
   .square.enabled{
